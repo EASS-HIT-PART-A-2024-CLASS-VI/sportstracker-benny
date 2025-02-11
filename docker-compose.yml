@@ -10,7 +10,6 @@ services:
       - db # Waits for db to be up (not guaranteed but helps)
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/sportsdb
-      # Additional environment variables as needed
 
   scoreboard_service:
     build: ./scoreboard_service

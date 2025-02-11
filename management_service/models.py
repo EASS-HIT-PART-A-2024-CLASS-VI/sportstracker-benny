@@ -7,6 +7,7 @@ class League(Base):
     __tablename__ = "leagues"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
+    country = Column(String, nullable=True)
     # More fields here...
 
     # Relationship if you want to link to teams or matches

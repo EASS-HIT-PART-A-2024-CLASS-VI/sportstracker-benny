@@ -1,0 +1,29 @@
+High-Level Architecture
+We’ll create:
+
+Microservice A: League & Team Management
+
+Manages leagues, teams, players, and match schedules (the “reference” data).
+A FastAPI application connected to (say) a PostgreSQL or MySQL database.
+Exposes endpoints to create or retrieve leagues, teams, match schedules.
+Microservice B: Score Updates / Live Feed
+
+Handles real-time score updates and match events (goals, points, injuries, etc.).
+A second FastAPI app that also interacts with the database (and optionally Redis) to store or retrieve live data quickly.
+Could expose WebSocket endpoints or standard REST endpoints for retrieving “current scoreboard” data.
+Microservice C: Stats & Analytics
+
+Periodically (or on-demand) aggregates data from completed games to compute standings, player stats, or league tables.
+A FastAPI service that can read from the same DB (or an analytics DB) and produce summary data.
+Could also store or cache aggregated data in Redis for quick retrieval.
+Database Container
+
+For persistent storage, e.g. a Dockerized PostgreSQL or MySQL image.
+All three services can connect to it (though you might isolate microservice schemas or use the same schema carefully).
+Optional: Redis
+
+If you want to demonstrate a caching/broker service for real-time scoreboard data or event queues.
+Frontend
+
+Not strictly required unless your class demands it, but typically a simple React/Vue or Streamlit app that calls the microservices.
+The front end can show live scores, league tables, team info, etc.

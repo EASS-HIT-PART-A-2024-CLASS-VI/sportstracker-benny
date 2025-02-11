@@ -41,7 +41,7 @@ def get_standings(league_id: int, db: Session = Depends(get_db)):
             # Should not happen, but just in case
             continue
         
-        if match.home_score > match.away_score:
+        if match.home_score > match.away_score:#a win is worth 3 points, a draw is worth 1 point (to each team), and a loss is worth 0 points
             home["wins"] += 1
             home["points"] += 3
             away["losses"] += 1

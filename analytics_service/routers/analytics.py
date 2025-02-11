@@ -1,10 +1,9 @@
 # analytics_service/routers/analytics.py
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from ..database import get_db
-from ..models import Match, Team
-from .. import schemas
-
+from database import get_db
+from models import Match, Team
+import schemas
 router = APIRouter()
 
 @router.get("/standings/{league_id}", response_model=schemas.StandingsResponse)

@@ -1,7 +1,6 @@
 # main.py
 from fastapi import FastAPI
 from routers import leagues, teams, matches  # the file or package named teams.py
-from .database import Base, engine
 
 app = FastAPI()
 

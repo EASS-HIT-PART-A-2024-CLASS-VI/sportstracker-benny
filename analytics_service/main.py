@@ -1,7 +1,9 @@
 # analytics_service/main.py
 from fastapi import FastAPI
-from .database import Base, engine
-from .routers import analytics
+import database
+from database import Base, engine
+import routers
+from routers import analytics
 
 # Optionally create tables if not using Alembic migrations
 Base.metadata.create_all(bind=engine)

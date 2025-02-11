@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  management_service:
+    build: ./management_service # Path to the Dockerfile directory
+    container_name: management_service
+    ports:
+      - "8000:8000" # Map localhost:8000 -> container:8000
+    depends_on:
+      - db # Waits for db to be up (not guaranteed but helps)
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/sportsdb
+      # Additional environment variables as needed
+
+  scoreboard_service:
+    build: ./scoreboard_service
+    container_name: scoreboard_service
+    ports:
+      - "8001:8000" # Map localhost:8001 -> container:8000
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/sportsdb
+
+  analytics_service:
+    build: ./analytics_service
+    container_name: analytics_service
+    ports:
+      - "8002:8000" # Map localhost:8002 -> container:8000
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/sportsdb
+
+  db:
+    image: postgres:14
+    container_name: sports_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=sportsdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

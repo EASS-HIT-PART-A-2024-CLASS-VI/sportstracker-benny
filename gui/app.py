@@ -30,10 +30,11 @@ if page == "Management":
     with st.form("create_league"):
         st.write("Create a new league")
         league_name = st.text_input("League Name")
+        league_country = st.text_input("Country")
         if st.form_submit_button("Create League"):
             if league_name.strip():
                 # POST to create league
-                payload = {"name": league_name}
+                payload = {"name": league_name, "country": league_country}
                 create_resp = requests.post(f"{MANAGEMENT_BASE}/leagues", json=payload)
                 if create_resp.status_code == 200 or create_resp.status_code == 201:
                     st.success("League created!")

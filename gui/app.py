@@ -7,7 +7,44 @@ SCOREBOARD_BASE = "http://scoreboard_service:8000"
 ANALYTICS_BASE  = "http://analytics_service:8000"
 
 st.set_page_config(page_title="Sports Tracker App", layout="wide")
+auth_mode = st.sidebar.radio("Authentication", ["Login", "Register"])
+if auth_mode == "Register":
+    st.sidebar.header("Register")
+    reg_username = st.sidebar.text_input("Username", key="reg_username")
+    reg_password = st.sidebar.text_input("Password", type="password", key="reg_password")
+    if st.sidebar.button("Register"):
+        # Send a registration request
+        payload = {"username": reg_username, "password": reg_password}
+        reg_resp = requests.post(f"{MANAGEMENT_BASE}/register", json=payload)
+        if reg_resp.status_code in (200, 201):
+            st.sidebar.success("Registration successful! Please log in.")
+        else:
+            st.sidebar.error(f"Registration failed: {reg_resp.json().get('detail', reg_resp.text)}")
+    st.stop()  
 
+# If in login mode (or after registration, the user switches to login)
+if "access_token" not in st.session_state:
+    st.sidebar.header("Login")
+    login_username = st.sidebar.text_input("Username", key="login_username")
+    login_password = st.sidebar.text_input("Password", type="password", key="login_password")
+    if st.sidebar.button("Login"):
+        # Note: OAuth2PasswordRequestForm usually sends form data, so we use data= instead of json=
+        data = {"username": login_username, "password": login_password}
+        login_resp = requests.post(f"{MANAGEMENT_BASE}/login", data=data)
+        if login_resp.status_code == 200:
+            token = login_resp.json().get("access_token")
+            st.session_state["access_token"] = token
+            st.sidebar.success("Logged in!")
+            st.experimental_rerun()
+        else:
+            st.sidebar.error("Login failed. Please check your credentials.")
+    st.stop()  
+if "access_token" in st.session_state:
+    if st.sidebar.button("Logout"):
+        del st.session_state["access_token"]
+        st.experimental_rerun()
+
+    
 # Simple navigation using a sidebar
 page = st.sidebar.selectbox("Select Page", ["Management", "Scoreboard", "Analytics"])
 

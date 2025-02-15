@@ -3,8 +3,8 @@ import streamlit as st
 import requests
 
 MANAGEMENT_BASE = "http://management_service:8000" # same name as docker-compose 'management_service'
-SCOREBOARD_BASE = "http://scoreboard_service:8001"
-ANALYTICS_BASE  = "http://analytics_service:8002"
+SCOREBOARD_BASE = "http://scoreboard_service:8000"
+ANALYTICS_BASE  = "http://analytics_service:8000"
 
 st.set_page_config(page_title="Sports Tracker App", layout="wide")
 

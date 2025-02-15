@@ -1,8 +1,5 @@
 from fastapi import FastAPI
-
+from routers import scores
 app = FastAPI()
 
-# Some minimal endpoint
-@app.get("/")
-def root():
-    return {"message": "Scoreboard service up!"}
+app.include_router(scores.router, prefix="/score")

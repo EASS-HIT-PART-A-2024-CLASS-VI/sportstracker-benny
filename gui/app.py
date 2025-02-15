@@ -2,7 +2,7 @@
 import streamlit as st
 import requests
 
-MANAGEMENT_BASE = "http://management_service:8000" # same name as docker-compose 'management_service'
+MANAGEMENT_BASE = "http://management_service:8000"
 SCOREBOARD_BASE = "http://scoreboard_service:8000"
 ANALYTICS_BASE  = "http://analytics_service:8000"
 
@@ -103,7 +103,40 @@ if page == "Management":
                     st.success("Match created!")
                 else:
                     st.error(f"Failed: {create_match_resp.text}")
-
+    st.subheader("Delete a League")
+    with st.form("delete_league"):
+        league_id_to_delete = st.number_input("League ID to delete", min_value=1, step=1)
+        delete_submitted = st.form_submit_button("Delete League")
+        if delete_submitted:
+            delete_resp = requests.delete(f"{MANAGEMENT_BASE}/leagues/{league_id_to_delete}")
+            if delete_resp.status_code == 204:
+                st.success("League deleted!")
+            elif delete_resp.status_code == 404:
+                st.error("League not found.")
+            else:
+                st.error(f"Failed to delete league: {delete_resp.text}")
+    st.subheader("Delete a Team")
+    with st.form("delete_team"):
+        team_id_to_delete = st.number_input("Team ID to delete", min_value=1, step=1, key="delete_team")
+        if st.form_submit_button("Delete Team"):
+            delete_resp = requests.delete(f"{MANAGEMENT_BASE}/teams/{team_id_to_delete}")
+            if delete_resp.status_code == 204:
+                st.success("Team deleted!")
+            elif delete_resp.status_code == 404:
+                st.error("Team not found.")
+            else:
+                st.error(f"Failed to delete team: {delete_resp.text}")
+    st.subheader("Delete a Match")
+    with st.form("delete_match"):
+        match_id_to_delete = st.number_input("Match ID to delete", min_value=1, step=1, key="delete_match")
+        if st.form_submit_button("Delete Match"):
+            delete_resp = requests.delete(f"{MANAGEMENT_BASE}/matches/{match_id_to_delete}")
+            if delete_resp.status_code == 204:
+                st.success("Match deleted!")
+            elif delete_resp.status_code == 404:
+                st.error("Match not found.")
+            else:
+                st.error(f"Failed to delete match: {delete_resp.text}")
 # -------------------------------------------------------------------
 # Scoreboard Page
 # -------------------------------------------------------------------

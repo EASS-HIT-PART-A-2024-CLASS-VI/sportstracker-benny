@@ -1,5 +1,5 @@
 # management_service/routers/teams.py
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response, status
 from sqlalchemy.orm import Session
 from database import get_db
 import models
@@ -70,7 +70,11 @@ def delete_team(team_id: int, db: Session = Depends(get_db)):
     team = db.query(models.Team).get(team_id)
     if not team:
         raise HTTPException(status_code=404, detail="Team not found")
+    # Delete matches where this team is referenced as home or away
+    db.query(models.Match).filter(
+        (models.Match.home_team_id == team_id) | (models.Match.away_team_id == team_id)
+    ).delete(synchronize_session=False)
 
     db.delete(team)
     db.commit()
-    return
+    return Response(status_code=status.HTTP_204_NO_CONTENT)

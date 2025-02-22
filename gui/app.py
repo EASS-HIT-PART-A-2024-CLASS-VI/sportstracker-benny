@@ -19,6 +19,7 @@ if auth_mode == "Register":
         if reg_resp.status_code in (200, 201):
             st.sidebar.success("Registration successful! Please log in.")
         else:
+            print("DEBUG:", reg_resp.status_code, reg_resp.text)
             st.sidebar.error(f"Registration failed: {reg_resp.json().get('detail', reg_resp.text)}")
     st.stop()  
 

@@ -1,7 +1,5 @@
 
-#:basketball: Sports Tracker App
-
-:basketball:
+# :basketball: Sports Tracker App
 <p align="center">
   <img width="300" height="200" src="https://github.com/EASS-HIT-PART-A-2024-CLASS-VI/sportstracker-benny/blob/main/images/logo.png">
 </p>

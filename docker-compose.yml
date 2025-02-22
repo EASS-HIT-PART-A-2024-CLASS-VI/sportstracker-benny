@@ -2,12 +2,12 @@ version: "3.8"
 
 services:
   management_service:
-    build: ./management_service # Path to the Dockerfile directory
+    build: ./management_service
     container_name: management_service
     ports:
       - "8000:8000" # Map localhost:8000 -> container:8000
     depends_on:
-      - db # Waits for db to be up (not guaranteed but helps)
+      - db # Waits for db to be up 
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/sportsdb
     volumes:
@@ -32,6 +32,15 @@ services:
       - db
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/sportsdb
+
+  tests:
+    build: ./integration_tests
+    container_name: test_runner
+    depends_on:
+      - db
+      - management_service
+      - scoreboard_service
+      - analytics_service
 
   gui:
     build: ./gui

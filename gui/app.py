@@ -63,7 +63,7 @@ page = st.sidebar.selectbox("Select Page", ["Management", "Scoreboard", "Analyti
 # -------------------------------------------------------------------
 if page == "Management":
     st.title("Management Service")
-
+    st.button("Refresh Data")
     st.subheader("1. Leagues")
     # Fetch leagues
     resp = requests.get(f"{MANAGEMENT_BASE}/leagues")

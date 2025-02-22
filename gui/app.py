@@ -160,12 +160,12 @@ if page == "Management":
         if submitted:
         
             end_resp = requests.patch(f"{MANAGEMENT_BASE}/matches/{match_id_to_end}/end")
-        if end_resp.status_code == 200:
-            st.success("Match ended!")
-        elif end_resp.status_code == 404:
-            st.error("Match not found.")
-        else:
-            st.error(f"Failed: {end_resp.text}")    
+            if end_resp.status_code == 200:
+                st.success("Match ended!")
+            elif end_resp.status_code == 404:
+                st.error("Match not found.")
+            else:
+                st.error(f"Failed: {end_resp.text}")    
 
     st.subheader("Delete a League")
     with st.form("delete_league"):

@@ -152,7 +152,6 @@ if page == "Management":
                     st.error(f"Failed: {create_match_resp.text}")
 
     st.subheader("4. End a Match")
-
     with st.form("end_match_form"):
         match_id_to_end = st.number_input("Match ID to end", min_value=1, step=1)
     
@@ -179,6 +178,7 @@ if page == "Management":
                 st.error("League not found.")
             else:
                 st.error(f"Failed to delete league: {delete_resp.text}")
+
     st.subheader("Delete a Team")
     with st.form("delete_team"):
         team_id_to_delete = st.number_input("Team ID to delete", min_value=1, step=1, key="delete_team")
@@ -190,6 +190,7 @@ if page == "Management":
                 st.error("Team not found.")
             else:
                 st.error(f"Failed to delete team: {delete_resp.text}")
+
     st.subheader("Delete a Match")
     with st.form("delete_match"):
         match_id_to_delete = st.number_input("Match ID to delete", min_value=1, step=1, key="delete_match")
@@ -201,6 +202,33 @@ if page == "Management":
                 st.error("Match not found.")
             else:
                 st.error(f"Failed to delete match: {delete_resp.text}")
+
+
+    st.subheader("Refresh Data")
+    if st.button("Refresh Data"):
+    # Re-fetch leagues
+        resp_leagues = requests.get(f"{MANAGEMENT_BASE}/leagues")
+        if resp_leagues.status_code == 200:
+            leagues = resp_leagues.json()
+            st.write("Leagues:", leagues)
+        else:
+            st.error("Failed to fetch leagues")
+
+    # Re-fetch teams
+        resp_teams = requests.get(f"{MANAGEMENT_BASE}/teams")
+        if resp_teams.status_code == 200:
+            teams = resp_teams.json()
+            st.write("Teams:", teams)
+        else:
+            st.error("Failed to fetch teams")
+
+    # Re-fetch matches
+        resp_matches = requests.get(f"{MANAGEMENT_BASE}/matches")
+        if resp_matches.status_code == 200:
+            matches = resp_matches.json()
+            st.write("Matches:", matches)
+        else:
+            st.error("Failed to fetch matches")
 # -------------------------------------------------------------------
 # Scoreboard Page
 # -------------------------------------------------------------------
@@ -254,3 +282,5 @@ elif page == "Analytics":
             st.json(standings_data)
         else:
             st.error(f"Failed to get standings: {resp.text}")
+
+

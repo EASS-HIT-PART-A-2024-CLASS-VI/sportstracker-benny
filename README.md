@@ -60,11 +60,11 @@ This application is divided into four microservices plus a GUI:
 
 All services run in Docker containers, coordinated by Docker Compose.
 
--**Architecture Diagram:**
+**Architecture Diagram:**
 
 ![alt text](https://github.com/EASS-HIT-PART-A-2024-CLASS-VI/sportstracker-benny/blob/main/images/mermaid-diagram-2025-02-22-154132.png "Logo Title Text 1")
 
--**Folder Structure:**
+**Folder Structure:**
 ```
 📦 
 ├─ README.md

@@ -1,5 +1,6 @@
 import pytest
 import httpx
+import time
 
 @pytest.fixture(scope="session")
 def services():
@@ -15,7 +16,7 @@ def test_end_to_end(services):
     analytics = services["analytics"]
 
     # 1. Register a new user
-    user_payload = {"username": "e2e_user", "password": "test_pass"}
+    user_payload = {"username": f"e2e_user_{int(time.time())}", "password": "test_pass"}
     reg_resp = management.post("/register", json=user_payload)
     assert reg_resp.status_code in (200, 201), f"Register failed: {reg_resp.text}"
     created_user = reg_resp.json()

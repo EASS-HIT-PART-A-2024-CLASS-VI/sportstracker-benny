@@ -19,7 +19,16 @@ if auth_mode == "Register":
         if reg_resp.status_code in (200, 201):
             st.sidebar.success("Registration successful! Please log in.")
         else:
-            print("DEBUG:", reg_resp.status_code, reg_resp.text)
+                # Print the status code and raw text BEFORE parsing JSON
+            print("DEBUG REGISTRATION:", reg_resp.status_code, reg_resp.text)
+
+            try:
+                # Attempt to parse the response as JSON
+                error_json = reg_resp.json()
+                detail = error_json.get("detail", reg_resp.text)
+            except ValueError:
+                # If JSON parse fails, fallback to raw text
+                detail = reg_resp.text
             st.sidebar.error(f"Registration failed: {reg_resp.json().get('detail', reg_resp.text)}")
     st.stop()  
 

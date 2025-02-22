@@ -150,6 +150,19 @@ if page == "Management":
                     st.success("Match created!")
                 else:
                     st.error(f"Failed: {create_match_resp.text}")
+
+    st.subheader("4. End a Match")
+    with st.form("end_match"):
+        match_id_to_end = st.number_input("Match ID to end", min_value=1, step=1)
+    if st.form_submit_button("End Match"):
+        end_resp = requests.patch(f"{MANAGEMENT_BASE}/matches/{match_id_to_end}/end")
+        if end_resp.status_code == 200:
+            st.success("Match ended!")
+        elif end_resp.status_code == 404:
+            st.error("Match not found.")
+        else:
+            st.error(f"Failed: {end_resp.text}")
+            
     st.subheader("Delete a League")
     with st.form("delete_league"):
         league_id_to_delete = st.number_input("League ID to delete", min_value=1, step=1)

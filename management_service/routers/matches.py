@@ -1,5 +1,5 @@
 # management_service/routers/matches.py
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from database import get_db
 import models
@@ -80,6 +80,17 @@ def update_match(match_id: int, update_data: schemas.MatchUpdate, db: Session = 
     db.commit()
     db.refresh(match)
     return match
+
+@router.patch("/matches/{match_id}/end", status_code=status.HTTP_200_OK)
+def end_match(match_id: int, db: Session = Depends(get_db)):
+    match = db.query(models.Match).filter(models.Match.id == match_id).first()
+    if not match:
+        raise HTTPException(status_code=404, detail="Match not found")
+    # Mark it finished
+    match.status = "finished"
+    db.commit()
+    db.refresh(match)
+    return {"message": "Match ended", "match_id": match.id, "status": match.status}
 
 
 @router.delete("/{match_id}", status_code=204)

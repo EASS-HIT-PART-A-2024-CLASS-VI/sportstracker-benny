@@ -1,6 +1,11 @@
 # main.py
 from fastapi import FastAPI
+from database import engine, Base
 from routers import auth, leagues, teams, matches  # the file or package named teams.py
+from models import User, Team, League, Match
+
+Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI()
 

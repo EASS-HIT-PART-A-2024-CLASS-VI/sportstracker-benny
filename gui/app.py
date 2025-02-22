@@ -209,25 +209,16 @@ if page == "Management":
         resp_leagues = requests.get(f"{MANAGEMENT_BASE}/leagues")
         if resp_leagues.status_code == 200:
             leagues = resp_leagues.json()
-            st.write("Leagues:", leagues)
-        else:
-            st.error("Failed to fetch leagues")
 
     # Re-fetch teams
         resp_teams = requests.get(f"{MANAGEMENT_BASE}/teams")
         if resp_teams.status_code == 200:
             teams = resp_teams.json()
-            st.write("Teams:", teams)
-        else:
-            st.error("Failed to fetch teams")
 
     # Re-fetch matches
         resp_matches = requests.get(f"{MANAGEMENT_BASE}/matches")
         if resp_matches.status_code == 200:
             matches = resp_matches.json()
-            st.write("Matches:", matches)
-        else:
-            st.error("Failed to fetch matches")
 # -------------------------------------------------------------------
 # Scoreboard Page
 # -------------------------------------------------------------------

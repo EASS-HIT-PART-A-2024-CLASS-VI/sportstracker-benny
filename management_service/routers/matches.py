@@ -81,7 +81,7 @@ def update_match(match_id: int, update_data: schemas.MatchUpdate, db: Session = 
     db.refresh(match)
     return match
 
-@router.patch("/matches/{match_id}/end", status_code=status.HTTP_200_OK)
+@router.patch("/{match_id}/end", status_code=status.HTTP_200_OK)
 def end_match(match_id: int, db: Session = Depends(get_db)):
     match = db.query(models.Match).filter(models.Match.id == match_id).first()
     if not match:

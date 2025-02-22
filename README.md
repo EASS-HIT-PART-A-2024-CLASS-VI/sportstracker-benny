@@ -35,6 +35,7 @@ A microservices-based sports tracking application built with FastAPI, SQLAlchemy
   - Responsive navigation between Management, Scoreboard, and Analytics pages.
     
 - **Demonstration Video:**
+  
   [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/KgHMXJNSGO4/0.jpg)](https://www.youtube.com/watch?v=KgHMXJNSGO4)
 
 

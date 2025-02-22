@@ -23,7 +23,7 @@ def test_end_to_end(services):
 
     # 2. Create a league
     league_payload = {"name": "E2E League", "country": "TestLand"}
-    league_resp = management.post("/leagues", json=league_payload)
+    league_resp = management.post("/leagues/", json=league_payload)
     assert league_resp.status_code in (200, 201), f"Create league failed: {league_resp.text}"
     created_league = league_resp.json()
     league_id = created_league["id"]

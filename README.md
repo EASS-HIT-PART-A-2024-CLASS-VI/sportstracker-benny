@@ -185,9 +185,13 @@ From the root directory of the repository (where the `docker-compose.yml` file i
 If you prefer to run the application locally without Docker, install the dependencies:
 
 `pip install -r management_service/requirements.txt`
+
 `pip install -r scoreboard_service/requirements.txt`
+
 `pip install -r analytics_service/requirements.txt`
+
 `pip install -r integration_tests/requirements.txt`
+
 `pip install -r gui/requirements.txt` 
 
 Then, run each service using Uvicorn or Streamlit accordingly.

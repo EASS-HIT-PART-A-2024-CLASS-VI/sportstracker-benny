@@ -33,6 +33,7 @@ A microservices-based sports tracking application built with FastAPI, SQLAlchemy
 - **User Interface:**  
   - A simple and intuitive GUI built with Streamlit.
   - Responsive navigation between Management, Scoreboard, and Analytics pages.
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/KgHMXJNSGO4/0.jpg)](https://www.youtube.com/watch?v=KgHMXJNSGO4)
 
 ## Tech Stack
 

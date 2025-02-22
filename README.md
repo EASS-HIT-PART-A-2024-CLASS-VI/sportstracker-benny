@@ -155,7 +155,7 @@ From the root directory of the repository (where the `docker-compose.yml` file i
     
     -   Use the login/register options in the sidebar of the GUI.
     -   After logging in, navigate to the Management page to create or delete leagues, teams, and matches.
-2.  **User Registration & Login:**
+2.  **Management:**
    
     -   Manage Leagues, Teams, Matches.
 3.  **Live Score Updates:**

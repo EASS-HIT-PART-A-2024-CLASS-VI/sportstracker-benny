@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app
 
 # Default command: run tests
-CMD ["pytest", "integration_tests"]
+CMD ["pytest", "test_system_e2e.py"]

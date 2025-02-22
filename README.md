@@ -85,25 +85,13 @@ All services run in Docker containers, coordinated by Docker Compose.
 ├─ management_service
 │  ├─ Dockerfile
 │  ├─ __pycache__
-│  │  ├─ auth_utils.cpython-310.pyc
-│  │  ├─ config.cpython-310.pyc
-│  │  ├─ database.cpython-310.pyc
-│  │  ├─ main.cpython-310.pyc
-│  │  ├─ models.cpython-310.pyc
-│  │  └─ schemas.cpython-310.pyc
 │  ├─ alembic.ini
 │  ├─ alembic
 │  │  ├─ README
 │  │  ├─ __pycache__
-│  │  │  └─ env.cpython-310.pyc
 │  │  ├─ env.py
 │  │  ├─ script.py.mako
 │  │  └─ versions
-│  │     ├─ 418ead1afa78_initial_migration_create_all_tables.py
-│  │     ├─ __pycache__
-│  │     │  ├─ 418ead1afa78_initial_migration_create_all_tables.cpython-310.pyc
-│  │     │  └─ ebecd5ba6a20_add_users_table.cpython-310.pyc
-│  │     └─ ebecd5ba6a20_add_users_table.py
 │  ├─ auth_utils.py
 │  ├─ config.py
 │  ├─ database.py
@@ -113,10 +101,6 @@ All services run in Docker containers, coordinated by Docker Compose.
 │  ├─ requirements.txt
 │  ├─ routers
 │  │  ├─ __pycache__
-│  │  │  ├─ auth.cpython-310.pyc
-│  │  │  ├─ leagues.cpython-310.pyc
-│  │  │  ├─ matches.cpython-310.pyc
-│  │  │  └─ teams.cpython-310.pyc
 │  │  ├─ auth.py
 │  │  ├─ leagues.py
 │  │  ├─ matches.py

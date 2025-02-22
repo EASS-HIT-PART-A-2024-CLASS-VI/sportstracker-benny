@@ -1,7 +1,8 @@
 
-  
 # Sports Tracker App
-![alt text](https://github.com/EASS-HIT-PART-A-2024-CLASS-VI/sportstracker-benny/blob/main/images/logo.png "Logo Title Text 1")
+<p align="center">
+  <img width="360" height="200" src="https://github.com/EASS-HIT-PART-A-2024-CLASS-VI/sportstracker-benny/blob/main/images/logo.png">
+</p>
 A microservices-based sports tracking application built with FastAPI, SQLAlchemy, and Streamlit. This app allows you to manage teams, leagues, matches, and view live scores and analytics—all within an intuitive web interface.
 
 ## Table of Contents

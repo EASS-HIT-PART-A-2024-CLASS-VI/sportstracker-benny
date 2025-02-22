@@ -205,7 +205,7 @@ if page == "Management":
 
 
     st.subheader("Refresh Data")
-    if st.button("Refresh Data"):
+    if st.button("Refresh Data", key="refresh_data_button"):
     # Re-fetch leagues
         resp_leagues = requests.get(f"{MANAGEMENT_BASE}/leagues")
         if resp_leagues.status_code == 200:

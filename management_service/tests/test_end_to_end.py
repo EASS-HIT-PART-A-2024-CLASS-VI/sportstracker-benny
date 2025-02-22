@@ -38,7 +38,7 @@ def test_end_to_end(services):
         "city": "TestCity",
         "league_id": league_id
     }
-    team_resp = management.post("/teams", json=team_payload)
+    team_resp = management.post("/teams/", json=team_payload)
     assert team_resp.status_code in (200, 201), f"Create team failed: {team_resp.text}"
     created_team = team_resp.json()
     team_id = created_team["id"]
@@ -50,7 +50,7 @@ def test_end_to_end(services):
         "away_team_id": team_id,  
         "status": "scheduled"
     }
-    match_resp = management.post("/matches", json=match_payload)
+    match_resp = management.post("/matches/", json=match_payload)
     assert match_resp.status_code in (200, 201), f"Create match failed: {match_resp.text}"
     created_match = match_resp.json()
     match_id = created_match["id"]

@@ -28,7 +28,10 @@ for attempt in range(1, max_retries + 1):
         print(f"Waiting {retry_wait_sec} seconds before retrying...")
         time.sleep(retry_wait_sec)
 
-Base.metadata.drop_all(bind=engine, checkfirst=True)
+try:
+    Base.metadata.drop_all(bind=engine, checkfirst=True)
+except Exception as e:
+    print(f"Warning: {e}")
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Analytics Service")

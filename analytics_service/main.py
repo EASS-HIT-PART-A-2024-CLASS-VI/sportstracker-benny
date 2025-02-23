@@ -28,7 +28,7 @@ for attempt in range(1, max_retries + 1):
         print(f"Waiting {retry_wait_sec} seconds before retrying...")
         time.sleep(retry_wait_sec)
 
-Base.metadata.drop_all(bind=engine)
+Base.metadata.drop_all(bind=engine, checkfirst=True)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Analytics Service")

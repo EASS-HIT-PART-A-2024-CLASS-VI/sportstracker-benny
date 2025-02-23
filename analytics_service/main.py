@@ -27,7 +27,8 @@ for attempt in range(1, max_retries + 1):
             sys.exit(1)  # Or raise an exception
         print(f"Waiting {retry_wait_sec} seconds before retrying...")
         time.sleep(retry_wait_sec)
-    
+
+Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Analytics Service")

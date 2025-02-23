@@ -4,6 +4,7 @@ from database import engine, Base
 from routers import auth, leagues, teams, matches  # the file or package named teams.py
 from models import User, Team, League, Match
 
+Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
 

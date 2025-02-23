@@ -3,6 +3,7 @@
 import time
 import pytest
 
+
 def test_full_system_flow(management_client, scoreboard_client, analytics_client):
     # 1. Register user
     unique_username = f"sys_user_{int(time.time())}"

@@ -1,5 +1,5 @@
 
-# Sports Tracker App
+# :basketball: Sports Tracker App
 <p align="center">
   <img width="300" height="200" src="https://github.com/EASS-HIT-PART-A-2024-CLASS-VI/sportstracker-benny/blob/main/images/logo.png">
 </p>
@@ -33,6 +33,11 @@ A microservices-based sports tracking application built with FastAPI, SQLAlchemy
 - **User Interface:**  
   - A simple and intuitive GUI built with Streamlit.
   - Responsive navigation between Management, Scoreboard, and Analytics pages.
+    
+- **Demonstration Video:**
+  
+  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/KgHMXJNSGO4/0.jpg)](https://www.youtube.com/watch?v=KgHMXJNSGO4)
+
 
 ## Tech Stack
 
@@ -54,8 +59,12 @@ This application is divided into four microservices plus a GUI:
 - **Database:** PostgreSQL is used as the central database, with each service connecting to it.
 
 All services run in Docker containers, coordinated by Docker Compose.
+
+**Architecture Diagram:**
+
 ![alt text](https://github.com/EASS-HIT-PART-A-2024-CLASS-VI/sportstracker-benny/blob/main/images/mermaid-diagram-2025-02-22-154132.png "Logo Title Text 1")
 
+**Folder Structure:**
 ```
 📦 
 ├─ README.md
@@ -85,25 +94,13 @@ All services run in Docker containers, coordinated by Docker Compose.
 ├─ management_service
 │  ├─ Dockerfile
 │  ├─ __pycache__
-│  │  ├─ auth_utils.cpython-310.pyc
-│  │  ├─ config.cpython-310.pyc
-│  │  ├─ database.cpython-310.pyc
-│  │  ├─ main.cpython-310.pyc
-│  │  ├─ models.cpython-310.pyc
-│  │  └─ schemas.cpython-310.pyc
 │  ├─ alembic.ini
 │  ├─ alembic
 │  │  ├─ README
 │  │  ├─ __pycache__
-│  │  │  └─ env.cpython-310.pyc
 │  │  ├─ env.py
 │  │  ├─ script.py.mako
 │  │  └─ versions
-│  │     ├─ 418ead1afa78_initial_migration_create_all_tables.py
-│  │     ├─ __pycache__
-│  │     │  ├─ 418ead1afa78_initial_migration_create_all_tables.cpython-310.pyc
-│  │     │  └─ ebecd5ba6a20_add_users_table.cpython-310.pyc
-│  │     └─ ebecd5ba6a20_add_users_table.py
 │  ├─ auth_utils.py
 │  ├─ config.py
 │  ├─ database.py
@@ -113,10 +110,6 @@ All services run in Docker containers, coordinated by Docker Compose.
 │  ├─ requirements.txt
 │  ├─ routers
 │  │  ├─ __pycache__
-│  │  │  ├─ auth.cpython-310.pyc
-│  │  │  ├─ leagues.cpython-310.pyc
-│  │  │  ├─ matches.cpython-310.pyc
-│  │  │  └─ teams.cpython-310.pyc
 │  │  ├─ auth.py
 │  │  ├─ leagues.py
 │  │  ├─ matches.py
@@ -171,10 +164,13 @@ From the root directory of the repository (where the `docker-compose.yml` file i
     
     -   Use the login/register options in the sidebar of the GUI.
     -   After logging in, navigate to the Management page to create or delete leagues, teams, and matches.
-2.  **Live Score Updates:**
+2.  **Management:**
+   
+    -   Manage Leagues, Teams, Matches.
+3.  **Live Score Updates:**
     
     -   Navigate to the Scoreboard page to update match scores and view live score data.
-3.  **Analytics:**
+4.  **Analytics:**
     
     -   The Analytics page displays league standings and other aggregated statistics.
 
@@ -185,9 +181,13 @@ From the root directory of the repository (where the `docker-compose.yml` file i
 If you prefer to run the application locally without Docker, install the dependencies:
 
 `pip install -r management_service/requirements.txt`
+
 `pip install -r scoreboard_service/requirements.txt`
+
 `pip install -r analytics_service/requirements.txt`
+
 `pip install -r integration_tests/requirements.txt`
+
 `pip install -r gui/requirements.txt` 
 
 Then, run each service using Uvicorn or Streamlit accordingly.
